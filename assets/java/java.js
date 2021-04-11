@@ -4,6 +4,9 @@ var subRedditNames = [
   "Binance,BNB",
   "Tether,USDT",
   "Dot,DOT",
+  "Litecoin,LTC",
+  "Monero,XMR",
+  "Nxt,NXT"
 ]; // add reddit name here
 
 var collectedData = []; // unsorted data is stored inside this array
@@ -67,10 +70,9 @@ function CollectData(symbol, name, subRedditSubscribers) {
 function CreateCoinCard(symbol, name, subRedditSubscribers) {
   // Now that we've stored the data, add the info to the chart
   var coinCardHTML = "";
-  coinCardHTML += `<div class="row">
-  <div class="col-1">1</div>
+  coinCardHTML += `<div class="row" id=${symbol}>
   <input class="col-1 star" type="checkbox" />
-  <div class="col id="#${symbol}"">${symbol}: ${name}</div>
+  <div class="col">${symbol}: ${name}</div>
   <div cass="col">${subRedditSubscribers}</div>
   </div>`;
   $(".container").append(coinCardHTML);
@@ -78,8 +80,12 @@ function CreateCoinCard(symbol, name, subRedditSubscribers) {
 
 // function to get serch value and scroll to page where value exists
 function searchScroll() {
-  var searchEl = document.querySelector('#symbolSearch').value;
-  console.log(searchEl);
-  // $(window).scrollTo("#" + searchEl + "");
+  var searchEl = document.querySelector('#symbolSearch').value.toUpperCase();
+  console.log('#' + searchEl + '');
+  console.log(document.querySelector('#' + searchEl + ''));
+  var searchRow = document.querySelector('#' + searchEl + '');
+  searchRow.scrollIntoView();
+  searchRow.classList.add('highlight-row');
+  
 }
 
