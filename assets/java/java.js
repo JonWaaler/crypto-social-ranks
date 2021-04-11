@@ -1,3 +1,5 @@
+// Once the document is load we fetch all subreddit names
+
 
 var subRedditNames = [
   "Bitcoin,BTC",
@@ -11,8 +13,6 @@ var subRedditNames = [
 ]; // add reddit name here
 
 var collectedData = []; // unsorted data is stored inside this array
-
-// Once the document is load we fetch all subreddit names
 $(document).ready(function () {
   console.log("Document Loaded.");
   
@@ -30,8 +30,8 @@ $(document).ready(function () {
 
   }
   
-});
 
+});
 // when given a subredded ex: 'https://www.reddit.com/r/Bitcoin/' we can search for that
 // subreddits information.
 function Get_RedditSubCount(subRedditName, symbol) {
@@ -76,19 +76,39 @@ function CollectData(symbol, name, subRedditSubscribers) {
 function CreateCoinCard(symbol, name, subRedditSubscribers) {
   // Now that we've stored the data, add the info to the chart
   var coinCardHTML = "";
-  coinCardHTML += `<div class="row" id=${symbol}>
-  <input class="col-1 star" type="checkbox" />
+  coinCardHTML += `<div class="row">
+  <input class="col-1 star" id=${symbol} data-symbol=${symbol} type="checkbox" />
   <div class="col">${symbol}: ${name}</div>
   <div cass="col">${subRedditSubscribers}</div>
   </div>`;
   $(".container").append(coinCardHTML);
 
+  document.getElementById(symbol).style.color= "red";
   
+
+  // after the html has been added ot the page, get items from local storage
+  // set checked status for the symbols that were saved to local storage
+
   document.getElementById(symbol).onclick= function faV() {
-    console.log(name);
+    
+    if (document.getElementById(symbol).checked == true) {
+      console.log(name);
+      localStorage.setItem(symbol, name);
+
+    }
+    else if (document.getElementById(symbol).checked == false) {
+      localStorage.removeItem(symbol, name);
+      
+    }
   };
+
+
+  
+  
+
   
 };
+
 
 // function to get serch value and scroll to page where value exists
 function searchScroll() {
@@ -100,4 +120,14 @@ function searchScroll() {
   searchRow.classList.add('highlight-row');
   
 }
+
+
+
+
+
+// $('#isAgeSelected').click(function() {
+//   $("#txtAge").toggle(this.checked);
+// });
+
+
 
