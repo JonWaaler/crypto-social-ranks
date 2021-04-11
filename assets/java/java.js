@@ -2,21 +2,30 @@ var favCoins= $('#fav-coin');
 
 
 var subRedditNames = [
-  "bitcoin,BTC",
-  "ethereum,ETH",
-  "binance,BNB",
+  "Bitcoin,BTC",
+  "Ethereum,ETH",
+  "Binance,BNB",
   "Tether,USDT",
+<<<<<<< HEAD
   "dot,DOT",
   "nnnn,DDD"
+=======
+  "Dot,DOT",
+>>>>>>> 6958c282f95d004769eece90c279825b44df0a06
 ]; // add reddit name here
+
 var collectedData = []; // unsorted data is stored inside this array
 
 // Once the document is load we fetch all subreddit names
 $(document).ready(function () {
   console.log("Document Loaded.");
+<<<<<<< HEAD
 
 
  
+=======
+  
+>>>>>>> 6958c282f95d004769eece90c279825b44df0a06
   // Collects data for all reddits in the array.
   // Since fetch is we
   for (let i = 0; i < subRedditNames.length; i++) {
@@ -37,6 +46,8 @@ $(document).ready(function () {
 // subreddits information.
 function Get_RedditSubCount(subRedditName, symbol) {
   fetch(`https://www.reddit.com/r/${subRedditName}/about.json`)
+
+  
     .then(function (response) {
       return response.json();
     })
@@ -47,7 +58,9 @@ function Get_RedditSubCount(subRedditName, symbol) {
     .catch(function (error) {
       console.log(error);
     });
+    
 }
+
 
 // This function pushes information into an array 'collectedData' and then creates a card
 // for the crypto.
@@ -56,25 +69,26 @@ function Get_RedditSubCount(subRedditName, symbol) {
 function CollectData(symbol, name, subRedditSubscribers) {
   // Store data for use later.
   
-  var item = 
-    { coinSymbol: symbol, redditName: name, redditSubs: subRedditSubscribers };
+  var item = { coinSymbol: symbol, redditName: name, redditSubs: subRedditSubscribers };
  
- collectedData.push(item);
- collectedData.sort((a, b) => (a.redditSubs < b.redditSubs) ? 1 : -1)
-  
- 
-  console.log(collectedData);
+  collectedData.push(item); 
+    //sorting fucntion
+  collectedData.sort((a, b) => (a.redditSubs < b.redditSubs) ? 1 : -1);
   //end of sorting function
-  
-  CreateCoinCard(symbol, name, subRedditSubscribers);
- 
+  if(collectedData.length == subRedditNames.length){
+    for(i = 0; i < collectedData.length; i++){
+      CreateCoinCard(collectedData[i].coinSymbol, collectedData[i].redditName, collectedData[i].redditSubs );
+    }
+  }
+   
 }
 
-function CreateCoinCard(symbol, name, subscribers) {
+function CreateCoinCard(symbol, name, subRedditSubscribers) {
   // Now that we've stored the data, add the info to the chart
   var coinCardHTML = "";
   coinCardHTML += `<div class="row fav-line" onchange="toggleCheckbox(this)">
   <div class="col-1">1</div>
+<<<<<<< HEAD
   <input id="fav-coin" class="col-1 star" type="checkbox" />
   <div class="col">${symbol}: r/${name}</div>
   <div cass="col">${subscribers}</div>
@@ -116,3 +130,11 @@ console.log(favStored);
 
 
  
+=======
+  <input class="col-1 star" type="checkbox" />
+  <div class="col">${symbol}: ${name}</div>
+  <div cass="col">${subRedditSubscribers}</div>
+  </div>`;
+  $(".container").append(coinCardHTML);
+}
+>>>>>>> 6958c282f95d004769eece90c279825b44df0a06
