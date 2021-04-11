@@ -1,17 +1,10 @@
-var favCoins= $('#fav-coin');
-
 
 var subRedditNames = [
   "Bitcoin,BTC",
   "Ethereum,ETH",
   "Binance,BNB",
   "Tether,USDT",
-<<<<<<< HEAD
-  "dot,DOT",
-  "nnnn,DDD"
-=======
   "Dot,DOT",
->>>>>>> 6958c282f95d004769eece90c279825b44df0a06
 ]; // add reddit name here
 
 var collectedData = []; // unsorted data is stored inside this array
@@ -19,13 +12,7 @@ var collectedData = []; // unsorted data is stored inside this array
 // Once the document is load we fetch all subreddit names
 $(document).ready(function () {
   console.log("Document Loaded.");
-<<<<<<< HEAD
-
-
- 
-=======
   
->>>>>>> 6958c282f95d004769eece90c279825b44df0a06
   // Collects data for all reddits in the array.
   // Since fetch is we
   for (let i = 0; i < subRedditNames.length; i++) {
@@ -88,15 +75,14 @@ function CreateCoinCard(symbol, name, subRedditSubscribers) {
   var coinCardHTML = "";
   coinCardHTML += `<div class="row fav-line" onchange="toggleCheckbox(this)">
   <div class="col-1">1</div>
-<<<<<<< HEAD
-  <input id="fav-coin" class="col-1 star" type="checkbox" />
-  <div class="col">${symbol}: r/${name}</div>
-  <div cass="col">${subscribers}</div>
-    </div>`;
-
-  $(".container").append(coinCardHTML); 
-  
+  <input class="col-1 star" type="checkbox" />
+  <div class="col">${symbol}: ${name}</div>
+  <div cass="col">${subRedditSubscribers}</div>
+  </div>`;
+  $(".container").append(coinCardHTML);
 };
+
+
 
 
 favStored= [];
@@ -104,37 +90,47 @@ favStored= [];
 function toggleCheckbox(el) {
 
   if (el.children[1].checked) {
-  console.log(el.children[2].textContent);
-  
-  favStored.push(el.children[2].textContent); 
-  localStorage.setItem("Fav", favStored);
-  
-}
+    console.log(el.children[2].textContent);
+    favStored.push(el.children[2].textContent); 
+    localStorage.setItem("Fav", JSON.stringify(favStored));
 
-else {
+    console.log(localStorage.getItem('Fav'));
   
-}
+  }
+
+  else {
+  
+  }
 
 
 
 console.log(favStored);
 
+};     
   
-};
+
+    // localStorage.setItem("Fav", el.children[2]);
+    // $(el.children[1]).checked= localStorage.getItem("fav","val");
+    
+//   });
+//   $(el.children[1]).on("change", function() {
+//     $(el.children[1]).css("color", "pink");
+//   });  
+// };
 
 
 
 
+// if (el.children[1].checked) {
+//   console.log(el.children[2].textContent);
 
-// el.children[1].checked= localStorage.getItem('Fav');
+// // favStored.push(el.children[2].textContent); 
+//   localStorage.setItem("Fav", el.children[2]);
+//   $(el.children[1]).prop("checked", true) 
+// }
+//   else {
+//     $(el.children[1]).prop("checked", false);
+//   };
 
 
- 
-=======
-  <input class="col-1 star" type="checkbox" />
-  <div class="col">${symbol}: ${name}</div>
-  <div cass="col">${subRedditSubscribers}</div>
-  </div>`;
-  $(".container").append(coinCardHTML);
-}
->>>>>>> 6958c282f95d004769eece90c279825b44df0a06
+// console.log(favStored);
