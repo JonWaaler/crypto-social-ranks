@@ -1,9 +1,9 @@
 var subRedditNames = [
-  "bitcoin,BTC",
-  "ethereum,ETH",
-  "binance,BNB",
+  "Bitcoin,BTC",
+  "Ethereum,ETH",
+  "Binance,BNB",
   "Tether,USDT",
-  "dot,DOT",
+  "Dot,DOT",
 ]; // add reddit name here
 
 var collectedData = []; // unsorted data is stored inside this array
@@ -70,7 +70,7 @@ function CreateCoinCard(symbol, name, subRedditSubscribers) {
   coinCardHTML += `<div class="row">
   <div class="col-1">1</div>
   <input class="col-1 star" type="checkbox" />
-  <div class="col">${symbol}: r/${name}</div>
+  <div class="col">${symbol}: ${name}</div>
   <div cass="col">${subRedditSubscribers}</div>
   </div>`;
   $(".container").append(coinCardHTML);
