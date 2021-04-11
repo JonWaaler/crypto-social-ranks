@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Crypto Social Ranks</title>
   </head>
@@ -15,24 +16,18 @@
     <!-- webpage header starts here -->
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand">Crypto Social Rank</a>
-      <form class="form-inline">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
+      <div class="form-inline">
+        <input id="symbolSearch" class="form-control" type="text" placeholder="Search Crypto Symbol">
+        <button onclick="searchScroll();" class="btn btn-primary my-2 my-sm-0">
+            <i class="fa fa-search" aria-hidden="true"></i>
         </button>
-      </form>
+      </div>
     </nav>
     <!-- webpage header ends here -->
 
     <!-- grid with cryptos currincies starts here -->
     <div class="container">
       <div class="row">
-        <div class="col-1">Rank</div>
         <div class="col-1">Favourites</div>
         <div class="col">Crypto Name</div>
         <div cass="col">Reddit Sub Count</div>

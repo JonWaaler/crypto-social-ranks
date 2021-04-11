@@ -5,6 +5,9 @@ var subRedditNames = [
   "Binance,BNB",
   "Tether,USDT",
   "Dot,DOT",
+  "Litecoin,LTC",
+  "Monero,XMR",
+  "Nxt,NXT"
 ]; // add reddit name here
 
 var collectedData = []; // unsorted data is stored inside this array
@@ -73,64 +76,28 @@ function CollectData(symbol, name, subRedditSubscribers) {
 function CreateCoinCard(symbol, name, subRedditSubscribers) {
   // Now that we've stored the data, add the info to the chart
   var coinCardHTML = "";
-  coinCardHTML += `<div class="row fav-line" onchange="toggleCheckbox(this)">
-  <div class="col-1">1</div>
+  coinCardHTML += `<div class="row" id=${symbol}>
   <input class="col-1 star" type="checkbox" />
   <div class="col">${symbol}: ${name}</div>
   <div cass="col">${subRedditSubscribers}</div>
   </div>`;
   $(".container").append(coinCardHTML);
+
+  
+  document.getElementById(symbol).onclick= function faV() {
+    console.log(name);
+  };
+  
 };
 
-
-
-
-favStored= [];
-
-function toggleCheckbox(el) {
-
-  if (el.children[1].checked) {
-    console.log(el.children[2].textContent);
-    favStored.push(el.children[2].textContent); 
-    localStorage.setItem("Fav", JSON.stringify(favStored));
-
-    console.log(localStorage.getItem('Fav'));
+// function to get serch value and scroll to page where value exists
+function searchScroll() {
+  var searchEl = document.querySelector('#symbolSearch').value.toUpperCase();
+  console.log('#' + searchEl + '');
+  console.log(document.querySelector('#' + searchEl + ''));
+  var searchRow = document.querySelector('#' + searchEl + '');
+  searchRow.scrollIntoView();
+  searchRow.classList.add('highlight-row');
   
-  }
+}
 
-  else {
-  
-  }
-
-
-
-console.log(favStored);
-
-};     
-  
-
-    // localStorage.setItem("Fav", el.children[2]);
-    // $(el.children[1]).checked= localStorage.getItem("fav","val");
-    
-//   });
-//   $(el.children[1]).on("change", function() {
-//     $(el.children[1]).css("color", "pink");
-//   });  
-// };
-
-
-
-
-// if (el.children[1].checked) {
-//   console.log(el.children[2].textContent);
-
-// // favStored.push(el.children[2].textContent); 
-//   localStorage.setItem("Fav", el.children[2]);
-//   $(el.children[1]).prop("checked", true) 
-// }
-//   else {
-//     $(el.children[1]).prop("checked", false);
-//   };
-
-
-// console.log(favStored);

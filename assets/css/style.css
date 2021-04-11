@@ -8,6 +8,7 @@
     visibility:hidden;
     font-size:25px;
     cursor:pointer;
+    text-align: center;
 }
 .star:before {
    content: "\2606";
@@ -18,3 +19,14 @@
    content: "\2605";
    position: absolute;
 }
+
+.highlight-row {
+   animation-name: highlight;
+   animation-duration: 2s;
+}
+
+@keyframes highlight {
+   from {background-color: white;}
+   to {background-color: lightgreen;}
+}
+
