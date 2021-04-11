@@ -55,15 +55,19 @@ function Get_RedditSubCount(subRedditName, symbol) {
 // fetch is async so you need to make sure all fetches have completed
 function CollectData(symbol, name, subRedditSubscribers) {
   // Store data for use later.
-  var item = [
-    { coinSymbol: symbol, redditName: name, redditSubs: subRedditSubscribers },
-  ];
-  collectedData.push(item);
-
-  //
+  
+  var item = 
+    { coinSymbol: symbol, redditName: name, redditSubs: subRedditSubscribers };
+ 
+ collectedData.push(item);
+ collectedData.sort((a, b) => (a.redditSubs < b.redditSubs) ? 1 : -1)
+  
+ 
+  console.log(collectedData);
+  //end of sorting function
+  
   CreateCoinCard(symbol, name, subRedditSubscribers);
-  
-  
+ 
 }
 
 function CreateCoinCard(symbol, name, subscribers) {
@@ -77,21 +81,38 @@ function CreateCoinCard(symbol, name, subscribers) {
     </div>`;
 
   $(".container").append(coinCardHTML); 
+  
 };
+
+
 favStored= [];
 
-function toggleCheckbox(el){
-
-  
+function toggleCheckbox(el) {
 
   if (el.children[1].checked) {
-    console.log(el.children[2].textContent);
-    favStored.push(el.children[2].textContent) 
-    el.children[1].checked= localStorage.getItem('Fav');
-  }
- 
+  console.log(el.children[2].textContent);
   
-console.log(favStored);
-localStorage.setItem("Fav", favStored);
+  favStored.push(el.children[2].textContent); 
+  localStorage.setItem("Fav", favStored);
+  
 }
+
+else {
+  
+}
+
+
+
+console.log(favStored);
+
+  
+};
+
+
+
+
+
+// el.children[1].checked= localStorage.getItem('Fav');
+
+
  
