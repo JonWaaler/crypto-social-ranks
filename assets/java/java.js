@@ -6,7 +6,7 @@ var subRedditNames = [
   "Dot,DOT",
   "Litecoin,LTC",
   "Monero,XMR",
-  "Nxt,NXT"
+  "Nxt,NXT",
 ]; // add reddit name here
 
 var collectedData = []; // unsorted data is stored inside this array
@@ -14,15 +14,16 @@ var collectedData = []; // unsorted data is stored inside this array
 // Once the document is load we fetch all subreddit names
 $(document).ready(function () {
   console.log("Document Loaded.");
-  
+
   // Collects data for all reddits in the array.
   // Since fetch is we
   for (let i = 0; i < subRedditNames.length; i++) {
     // Split the index to get the
     var coinInfo = subRedditNames[i].split(",");
 
-    // The reddit name is stored before the ',' so input index '0'
+    // i is the index, isChecked is for favorite functionality
     Get_RedditSubCount(coinInfo[0], coinInfo[1]);
+    // The reddit name is stored before the ',' so input index '0'
   }
 });
 
@@ -30,8 +31,6 @@ $(document).ready(function () {
 // subreddits information.
 function Get_RedditSubCount(subRedditName, symbol) {
   fetch(`https://www.reddit.com/r/${subRedditName}/about.json`)
-
-  
     .then(function (response) {
       return response.json();
     })
@@ -42,50 +41,81 @@ function Get_RedditSubCount(subRedditName, symbol) {
     .catch(function (error) {
       console.log(error);
     });
-    
 }
-
 
 // This function pushes information into an array 'collectedData' and then creates a card
 // for the crypto.
 // TODO: Sort 'collectedData' after all the fetch functions have completed.
 // fetch is async so you need to make sure all fetches have completed
-function CollectData(symbol, name, subRedditSubscribers) {
+function CollectData(symbol, name, subRedditSubscribers, rank, isChecked) {
   // Store data for use later.
-  
-  var item = { coinSymbol: symbol, redditName: name, redditSubs: subRedditSubscribers };
- 
-  collectedData.push(item); 
-    //sorting fucntion
-  collectedData.sort((a, b) => (a.redditSubs < b.redditSubs) ? 1 : -1);
+
+  var item = {
+    coinSymbol: symbol,
+    redditName: name,
+    redditSubs: subRedditSubscribers,
+  };
+
+  collectedData.push(item);
+  //sorting fucntion
+  collectedData.sort((a, b) => (a.redditSubs < b.redditSubs ? 1 : -1));
   //end of sorting function
-  if(collectedData.length == subRedditNames.length){
-    for(i = 0; i < collectedData.length; i++){
-      CreateCoinCard(collectedData[i].coinSymbol, collectedData[i].redditName, collectedData[i].redditSubs );
+
+  // Creates coin card for each coin
+  if (collectedData.length == subRedditNames.length) {
+    for (i = 0; i < collectedData.length; i++) {
+      CreateCoinCard(
+        collectedData[i].coinSymbol,
+        collectedData[i].redditName,
+        collectedData[i].redditSubs,
+        i + 1,
+        isChecked
+      );
     }
   }
-   
 }
 
-function CreateCoinCard(symbol, name, subRedditSubscribers) {
+function CreateCoinCard(symbol, name, subRedditSubscribers, rank, isChecked) {
   // Now that we've stored the data, add the info to the chart
   var coinCardHTML = "";
-  coinCardHTML += `<div class="row" id=${symbol}>
-  <input class="col-1 star" type="checkbox" />
-  <div class="col">${symbol}: ${name}</div>
-  <div cass="col">${subRedditSubscribers}</div>
-  </div>`;
-  $(".container").append(coinCardHTML);
-};
+  if (isChecked) {
+    coinCardHTML += `<div class="row" id=${symbol}>
+    <input class="col-1 star" type="checkbox" checked/>
+    <div class ="col">${rank}</div>
+    <div class="col">${symbol}: ${name}</div>
+    <div cass="col">${subRedditSubscribers}</div>
+    </div>`;
+    $(".container").append(coinCardHTML);
+  } else {
+    coinCardHTML += `<div class="row" id=${symbol}>
+    <input class="col-1 star" type="checkbox"/>
+    <div class ="col">${rank}</div>
+    <div class="col">${symbol}: ${name}</div>
+    <div cass="col">${subRedditSubscribers}</div>
+    </div>`;
+    $(".container").append(coinCardHTML);
+  }
+}
 
 // function to get serch value and scroll to page where value exists
 function searchScroll() {
-  var searchEl = document.querySelector('#symbolSearch').value.toUpperCase();
-  console.log('#' + searchEl + '');
-  console.log(document.querySelector('#' + searchEl + ''));
-  var searchRow = document.querySelector('#' + searchEl + '');
+  var searchEl = document.querySelector("#symbolSearch").value.toUpperCase();
+  console.log("#" + searchEl + "");
+  console.log(document.querySelector("#" + searchEl + ""));
+  var searchRow = document.querySelector("#" + searchEl + "");
   searchRow.scrollIntoView();
-  searchRow.classList.add('highlight-row');
-  
+  searchRow.classList.add("highlight-row");
 }
 
+function SaveData() {
+  for (let i = 0; i < collectedData.length; i++) {
+    var tempSplit = subRedditNames[i].split(",");
+
+    // loops throguh each symbol seeing if its been clicked
+    $(`#${tempSplit[1]}`).click(function () {
+      console.log($(this).children("col-sym").text());
+    });
+  }
+}
+
+function LoadData() {}
