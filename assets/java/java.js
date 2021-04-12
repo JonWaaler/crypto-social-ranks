@@ -8,7 +8,6 @@ var subRedditNames = [
   "Monero,XMR",
   "Nxt,NXT",
   "UniSwap,UNI",
-  "litecoin,LTC",
 ]; // add reddit name here
 
 var collectedData = []; // unsorted data is stored inside this array
