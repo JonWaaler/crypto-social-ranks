@@ -1,8 +1,30 @@
+.navbar {
+   background-color: darkblue;
+   color: white;
+}
+
+.jumbotron {
+   text-align: center;
+}
+
 .row {
     white-space: pre-wrap;
     height: 80px;
-    border-top: 1px solid darkblue;;
+    border-top: 1px solid darkblue;
+    border-left: 1px solid darkblue;
+    border-right: 1px solid darkblue;
   }
+
+.row:hover {
+     background-color: lightgray;
+  }
+
+.title-row {
+   font-weight: bold;
+   font-size: 15px;
+   background-color: lightgray;
+   margin-top: 20px;
+}
 
 .star {
     visibility:hidden;
@@ -27,6 +49,8 @@
 
 @keyframes highlight {
    from {background-color: white;}
-   to {background-color: lightgreen;}
+   to {background-color: lightgray;}
 }
+
+
 
