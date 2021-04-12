@@ -6,4 +6,4 @@ The project is designed to be a crypto currency infomation website that dispalys
 
 The live application can be found here: https://jonwaaler.github.io/crypto-social-ranks/
 
-The following is a screenshot of the application: ![here]()
+The following is a screenshot of the application: ![here](https://github.com/JonWaaler/crypto-social-ranks/blob/develop/assets/images/screenshot.JPG)
