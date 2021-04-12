@@ -85,6 +85,7 @@ function searchScroll() {
   console.log(document.querySelector('#' + searchEl + ''));
   var searchRow = document.querySelector('#' + searchEl + '');
   searchRow.scrollIntoView();
+  window.scrollBy(0, -60);
   searchRow.classList.add('highlight-row');
   
 }
