@@ -4,52 +4,52 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link 
+    <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Crypto Social Ranks</title>
   </head>
   <body>
-
     <!-- webpage header starts here -->
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar sticky-top">
       <a class="navbar-brand">Crypto Social Rank</a>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      <div class="form-inline">
+        <input id="symbolSearch" class="form-control" type="text" placeholder="Search Crypto Symbol">
+        <button onclick="searchScroll();" class="btn btn-primary my-2 my-sm-0">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
     </nav>
     <!-- webpage header ends here -->
 
+    <!--jumbotron starts here-->
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, Investors!</h1>
+      <p class="lead">Crypto Social Ranks is deisnged to help users find crypto currencies with large social following.</p>
+      <hr class="my-4">
+      <p>Let us help you find the next big digital currency!</p>
+    </div>
+
+    <!--jumbotron ends here-->
+
     <!-- grid with cryptos currincies starts here -->
     <div class="container">
-      <div class="row">
-        <div class="col-1">Rank</div>
+      <div class="row title-row">
         <div class="col-1">Favourites</div>
+        <div class="col">Rank</div>
         <div class="col">Crypto Name</div>
         <div cass="col">Reddit Sub Count</div>
       </div>
-      <div class="row">
-        <div class="col-1">1</div>
-        <input class="col-1 star" type="checkbox">
-        <div class="col">BTC</div>
-        <div cass="col">1000</div>
-      </div>
-      <div class="row">
-        <div class="col-1"></div>
-        <input class="col-1 star" type="checkbox">
-        <div class="col"></div>
-        <div cass="col"></div>
-      </div>
-      <div class="row">
-        <div class="col-1"></div>
-        <input class="col-1 star" type="checkbox">
-        <div class="col"></div>
-        <div cass="col"></div>
-      </div>
     </div>
     <!-- grid with cryptos ends here -->
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Link Javascript external file -->
+    <script src="./assets/java/java.js"></script>
   </body>
 </html>
