@@ -21,7 +21,7 @@
 }
 
 .star {
-  /* visibility:hidden; */
+  visibility: hidden;
   font-size: 25px;
   cursor: pointer;
   text-align: center;
